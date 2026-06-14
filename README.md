@@ -35,15 +35,36 @@ gcloud config set project <YOUR_PROJECT_ID>
 # 2) 배포
 gcloud run deploy semojum-web \
   --source . \
-  --region asia-northeast3 \
+  --region asia-northeast1 \
   --allow-unauthenticated
 ```
 
 배포가 끝나면 출력되는 `Service URL` 로 접속하면 됩니다.
 이후 코드 수정 후 같은 명령을 다시 실행하면 새 버전이 올라갑니다.
 
-> `asia-northeast3` 는 서울 리전입니다. 필요에 따라 변경하세요.
+> `asia-northeast1` 은 도쿄 리전입니다. (서울 `asia-northeast3` 는 커스텀 도메인 매핑을 지원하지 않아 도쿄로 배포합니다)
 > 최초 배포 시 Artifact Registry / Cloud Build API 활성화 여부를 물으면 `y` 로 진행합니다.
+
+## 커스텀 도메인 (semo-jum.com)
+
+도쿄 리전 서비스에 도메인 매핑을 생성해 두었습니다. DNS 제공업체에서 루트(@)에 아래 레코드를 추가하면 연결됩니다 (이메일 MX 레코드는 건드리지 않음). DNS 반영 후 Google이 SSL 인증서를 자동 발급합니다.
+
+```
+A     216.239.32.21
+A     216.239.34.21
+A     216.239.36.21
+A     216.239.38.21
+AAAA  2001:4860:4802:32::15
+AAAA  2001:4860:4802:34::15
+AAAA  2001:4860:4802:36::15
+AAAA  2001:4860:4802:38::15
+```
+
+매핑 상태 확인:
+
+```bash
+gcloud beta run domain-mappings describe --domain semo-jum.com --region asia-northeast1
+```
 
 ## 참고
 
