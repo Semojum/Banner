@@ -1,0 +1,7 @@
+.git
+.gitignore
+.gcloudignore
+.dockerignore
+.claude
+*.md
+wireframe_final.html

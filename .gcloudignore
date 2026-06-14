@@ -1,0 +1,6 @@
+# gcloud run deploy --source . 업로드 시 제외할 항목
+.git
+.gitignore
+.claude
+*.md
+wireframe_final.html
