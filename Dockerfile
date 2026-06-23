@@ -6,6 +6,8 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # 정적 파일 복사
 COPY index.html /usr/share/nginx/html/index.html
+COPY robots.txt /usr/share/nginx/html/robots.txt
+COPY sitemap.xml /usr/share/nginx/html/sitemap.xml
 COPY IMG/ /usr/share/nginx/html/IMG/
 
 EXPOSE 8080
