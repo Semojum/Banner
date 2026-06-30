@@ -90,6 +90,17 @@
   .imgph .ix{font-family:ui-monospace,Menlo,monospace;font-size:11px;font-weight:800;color:var(--blue-d);background:var(--blue-l);padding:3px 9px;border-radius:6px;letter-spacing:.02em}
   .imgph .cap{font-size:12px;color:var(--gray);max-width:280px;line-height:1.45}
 
+  /* Vertical tab gallery (IMG-06) */
+  .vtab{display:flex;gap:14px;align-items:center}
+  .vtab-rail{display:flex;flex-direction:column;gap:9px;flex:none}
+  .vtab-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--mute);font-family:ui-monospace,Menlo,monospace;font-size:13px;font-weight:800;cursor:pointer;transition:.22s cubic-bezier(.16,1,.3,1)}
+  .vtab-btn:hover{color:var(--blue-d);border-color:#c7d4ee;transform:translateX(-2px)}
+  .vtab-btn.on{color:#fff;background:var(--blue);border-color:var(--blue);box-shadow:0 8px 20px rgba(79,125,240,.32)}
+  .vtab-stage{position:relative;flex:1;min-width:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--tint);aspect-ratio:16/9;box-shadow:var(--shadow)}
+  .vtab-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .55s ease,transform .7s cubic-bezier(.16,1,.3,1);pointer-events:none}
+  .vtab-stage img.on{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.vtab-stage img{transition:none}}
+
   /* Hero */
   .hero{position:relative;overflow:hidden;padding:clamp(78px,10vw,118px) 0 clamp(70px,9vw,104px)}
   .aurora{position:absolute;inset:-25% -10% auto -10%;height:130%;z-index:0;filter:blur(64px);opacity:.85;pointer-events:none}
@@ -545,7 +556,20 @@
           <li data-en-html="The document's <b>structure and hierarchy</b> are recognized first">문서의 <b>구조와 위계</b>를 먼저 인식합니다</li>
         </ul>
       </div>
-      <div class="imgph reveal reveal-r d1" data-ix="IMG-06"><span class="ic">🧩</span><span class="ix">IMG-06</span><span class="cap">복합 레이아웃 인식 예시 — 단/표/읽기 순서를 구분해 인식하는 화면 또는 다이어그램</span></div>
+      <div class="vtab reveal reveal-r d1" data-ix="IMG-06" id="vtab06">
+        <div class="vtab-rail" role="tablist" aria-orientation="vertical" aria-label="복합 레이아웃 인식 예시">
+          <button class="vtab-btn on" type="button" role="tab" aria-selected="true" aria-controls="vtab06-p0" data-vt="0">01</button>
+          <button class="vtab-btn" type="button" role="tab" aria-selected="false" aria-controls="vtab06-p1" data-vt="1">02</button>
+          <button class="vtab-btn" type="button" role="tab" aria-selected="false" aria-controls="vtab06-p2" data-vt="2">03</button>
+          <button class="vtab-btn" type="button" role="tab" aria-selected="false" aria-controls="vtab06-p3" data-vt="3">04</button>
+        </div>
+        <div class="vtab-stage">
+          <img class="on" id="vtab06-p0" role="tabpanel" src="IMG/1.png" alt="세모점 OCR 변환 화면 — 표 구조를 위 테두리·열 단위로 인식한 결과" width="1920" height="1080" loading="lazy" decoding="async">
+          <img id="vtab06-p1" role="tabpanel" src="IMG/2.png" alt="세모점 OCR 변환 화면 — 본문 속 수식을 인식해 점역 변환한 결과" width="1920" height="1080" loading="lazy" decoding="async">
+          <img id="vtab06-p2" role="tabpanel" src="IMG/3.png" alt="세모점 OCR 변환 화면 — 풀이 텍스트와 그림 설명을 순서대로 인식하는 모습" width="1920" height="1080" loading="lazy" decoding="async">
+          <img id="vtab06-p3" role="tabpanel" src="IMG/4.png" alt="세모점 OCR 변환 화면 — 그림 내용을 글로 설명한 결과" width="1920" height="1080" loading="lazy" decoding="async">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -561,7 +585,7 @@
           <li data-en-html="<b>Tables</b> come with a draft description for the reader"><b>표</b>는 읽는 사람을 위한 설명 초안까지 제공합니다</li>
         </ul>
       </div>
-      <div class="imgph real reveal reveal-l d1"><img src="IMG/IMG_10.png" alt="세모점 OCR 변환 화면 — 수식·표가 담긴 원문을 인식해 텍스트로 정리한 결과" width="470" height="296" loading="lazy" decoding="async"></div>
+      <div class="imgph real reveal reveal-l d1"><img src="IMG/7.png" alt="세모점 초안 생성 화면 — 수식·그림이 담긴 원문을 인식해 점역 초안과 그림 설명을 생성한 결과" width="1917" height="1195" loading="lazy" decoding="async"></div>
     </div>
   </section>
 
@@ -577,7 +601,7 @@
           <li data-en-html="Add content or <b>rearrange blocks</b>, then confirm — the expert stays in control">내용을 더하거나 <b>블록을 옮겨</b> 점역사가 직접 확정합니다</li>
         </ul>
       </div>
-      <div class="imgph real reveal reveal-r d1"><img src="IMG/IMG_09.png" alt="세모점 분할 뷰 에디터 — 좌측 원본, 우측 점역 결과" width="470" height="297" loading="lazy" decoding="async"></div>
+      <div class="imgph real reveal reveal-r d1"><img src="IMG/8.png" alt="세모점 분할 뷰 에디터 — 좌측 원본·우측 점자, 대응 구간이 함께 강조된 화면" width="1929" height="1192" loading="lazy" decoding="async"></div>
     </div>
   </section>
 
@@ -799,6 +823,29 @@
   }
   var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target)}})},{threshold:0.6});
   document.querySelectorAll('[data-target]').forEach(function(el){cio.observe(el)});
+
+  // Vertical tab gallery (IMG-06): click + auto-advance, pauses on hover/focus
+  (function(){
+    var vt=document.getElementById('vtab06'); if(!vt) return;
+    var btns=vt.querySelectorAll('.vtab-btn'), imgs=vt.querySelectorAll('.vtab-stage img');
+    var n=btns.length, cur=0, timer=null, DUR=3500;
+    function show(i){
+      cur=(i+n)%n;
+      for(var k=0;k<n;k++){
+        var on=k===cur;
+        btns[k].classList.toggle('on',on); btns[k].setAttribute('aria-selected',on?'true':'false');
+        imgs[k].classList.toggle('on',on);
+      }
+    }
+    function stop(){ if(timer){clearInterval(timer);timer=null;} }
+    function start(){ if(reduce||timer||n<2) return; timer=setInterval(function(){show(cur+1);},DUR); }
+    btns.forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.vt);stop();start();});});
+    vt.addEventListener('mouseenter',stop); vt.addEventListener('mouseleave',start);
+    vt.addEventListener('focusin',stop); vt.addEventListener('focusout',start);
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?start():stop();});},{threshold:0.3}).observe(vt);
+    } else { start(); }
+  })();
 </script>
 </body>
 </html>
